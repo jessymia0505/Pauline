@@ -1,0 +1,125 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Hero from "./components/Hero";
+import Game from "./components/Game";
+import GridHack from "./components/GridHack";
+import Leaderboard from "./components/Leaderboard";
+import Contact from "./components/Contact";
+import HowToPlay from "./components/HowToPlay";
+import { Level, GameMode } from "./types";
+import { sounds } from "./lib/sounds";
+import { saveScore } from "./lib/storage";
+
+type View = "home" | "game" | "leaderboard" | "contact" | "how-to-play";
+
+export default function App() {
+  const [currentView, setCurrentView] = useState<View>("home");
+  const [gameMode, setGameMode] = useState<GameMode>("quiz");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [lastGameResult, setLastGameResult] = useState<{ score: number; level: Level; entryId?: string } | null>(null);
+
+  const handleStartGame = (mode: GameMode = "quiz") => {
+    sounds.playStart();
+    setGameMode(mode);
+    setCurrentView("game");
+  };
+
+  const handleGameOver = (score: number, level: Level) => {
+    sounds.playFailure();
+    setLastGameResult({ score, level });
+    
+    // Save score
+    const username = prompt("SYSTEM BREACHED! Enter your operative handle:") || "OPERATIVE";
+    const entry = saveScore(score, level, username);
+    
+    setLastGameResult({ score, level, entryId: entry.id });
+    setCurrentView("leaderboard");
+  };
+
+  const handleNavigate = (view: View) => {
+    sounds.playClick();
+    setCurrentView(view);
+  };
+
+  const renderView = () => {
+    switch (currentView) {
+      case "home":
+        return <Hero onStart={handleStartGame} />;
+      case "game":
+        return gameMode === "quiz" ? (
+          <Game onGameOver={handleGameOver} />
+        ) : (
+          <GridHack onGameOver={handleGameOver} />
+        );
+      case "leaderboard":
+        return <Leaderboard lastResult={lastGameResult} onRestart={handleStartGame} />;
+      case "contact":
+        return <Contact />;
+      case "how-to-play":
+        return <HowToPlay />;
+      default:
+        return <Hero onStart={handleStartGame} />;
+    }
+  };
+
+  return (
+    <div className="relative min-h-screen">
+      {/* Visual Effects Overlay */}
+      <div className="scanline" />
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] z-40" />
+      
+      <Navbar onMenuClick={() => {
+        sounds.playClick();
+        setIsSidebarOpen(true);
+      }} />
+      
+      <Sidebar 
+        isOpen={isSidebarOpen} 
+        onClose={() => {
+          sounds.playClick();
+          setIsSidebarOpen(false);
+        }} 
+        onNavigate={(view) => handleNavigate(view as View)} 
+      />
+
+      <main className="relative z-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentView}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {renderView()}
+          </motion.div>
+        </AnimatePresence>
+      </main>
+
+      {/* Footer-like status bar */}
+      <footer className="fixed bottom-0 left-0 w-full p-4 flex flex-col md:flex-row justify-between items-center text-[10px] font-mono text-cyber-purple/60 tracking-widest z-50 bg-black/20 backdrop-blur-sm">
+        <div className="flex gap-6 mb-2 md:mb-0">
+          <button 
+            onClick={() => handleNavigate("how-to-play")}
+            onMouseEnter={() => sounds.playClick()}
+            className="hover:text-cyber-purple transition-colors cursor-pointer uppercase font-bold border-b border-transparent hover:border-cyber-purple"
+          >
+            How to Play
+          </button>
+          <button 
+            onClick={() => handleNavigate("contact")}
+            onMouseEnter={() => sounds.playClick()}
+            className="hover:text-cyber-purple transition-colors cursor-pointer uppercase font-bold border-b border-transparent hover:border-cyber-purple"
+          >
+            Contact Us
+          </button>
+        </div>
+        <div className="uppercase font-bold text-cyber-purple/40">
+          Built by Paulina509
+        </div>
+      </footer>
+    </div>
+  );
+}
