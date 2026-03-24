@@ -1,10 +1,11 @@
-import { X, Home, Gamepad2, Trophy, Mail, HelpCircle } from "lucide-react";
+import { X, Home, Gamepad2, Trophy, Mail, HelpCircle, BarChart3 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   onNavigate: (view: string) => void;
+  onToggleAnalytics: () => void;
 }
 
 const menuItems = [
@@ -15,7 +16,7 @@ const menuItems = [
   { id: "contact", label: "Contact", icon: Mail },
 ];
 
-export default function Sidebar({ isOpen, onClose, onNavigate }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, onNavigate, onToggleAnalytics }: SidebarProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -57,6 +58,19 @@ export default function Sidebar({ isOpen, onClose, onNavigate }: SidebarProps) {
                   </span>
                 </button>
               ))}
+
+              <button
+                onClick={() => {
+                  onToggleAnalytics();
+                  onClose();
+                }}
+                className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-cyber-purple/10 transition-all border border-transparent hover:border-cyber-purple/30 group mt-8"
+              >
+                <BarChart3 className="w-5 h-5 text-cyber-purple group-hover:scale-110 transition-transform" />
+                <span className="text-lg font-medium group-hover:text-cyber-purple transition-colors">
+                  System Analytics
+                </span>
+              </button>
             </nav>
 
             <div className="absolute bottom-8 left-6 right-6 p-4 glass-panel text-xs text-cyber-purple/60 text-center">

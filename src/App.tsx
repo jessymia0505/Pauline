@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import AnalyticsPanel from "./components/AnalyticsPanel";
 import Hero from "./components/Hero";
 import Game from "./components/Game";
 import GridHack from "./components/GridHack";
@@ -18,6 +19,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState<View>("home");
   const [gameMode, setGameMode] = useState<GameMode>("quiz");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
   const [lastGameResult, setLastGameResult] = useState<{ score: number; level: Level; entryId?: string } | null>(null);
 
   const handleStartGame = (mode: GameMode = "quiz") => {
@@ -82,6 +84,18 @@ export default function App() {
           setIsSidebarOpen(false);
         }} 
         onNavigate={(view) => handleNavigate(view as View)} 
+        onToggleAnalytics={() => {
+          sounds.playClick();
+          setIsAnalyticsOpen(!isAnalyticsOpen);
+        }}
+      />
+
+      <AnalyticsPanel 
+        isOpen={isAnalyticsOpen} 
+        onClose={() => {
+          sounds.playClick();
+          setIsAnalyticsOpen(false);
+        }} 
       />
 
       <main className="relative z-10">
