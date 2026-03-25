@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Menu, BarChart3 } from "lucide-react";
 import { motion } from "motion/react";
 
 interface NavbarProps {
@@ -22,6 +22,18 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
       >
         VERSE
       </motion.div>
+
+      <a 
+        href="https://analytics.vgdh.io/paulina1-theta.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyber-purple/10 border border-cyber-purple/30 hover:bg-cyber-purple/20 transition-all group"
+      >
+        <BarChart3 className="w-4 h-4 text-cyber-purple group-hover:scale-110 transition-transform" />
+        <span className="text-[10px] font-mono font-bold text-cyber-purple uppercase tracking-widest hidden sm:inline">
+          Live Stats
+        </span>
+      </a>
     </nav>
   );
 }
