@@ -26,37 +26,37 @@ export default function Hero({ onStart }: HeroProps) {
           <Cpu className="w-8 h-8 text-cyber-purple/40" />
         </div>
 
-        <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter neon-text text-white glitch-text" data-text="VERSE MIND HEIST">
+        <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tighter neon-text text-white/90">
           VERSE MIND HEIST
         </h1>
         
-        <p className="text-xl md:text-2xl text-cyber-purple/80 mb-12 font-mono tracking-widest">
+        <p className="text-xl md:text-2xl text-cyber-purple/60 mb-12 font-mono tracking-widest">
           Hack the System • Solve the Code • Break the Security
         </p>
 
         <div className="flex flex-col md:flex-row gap-6 justify-center">
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(188, 19, 254, 0.3)" }}
+            whileHover={{ scale: 1.02, boxShadow: "0 0 10px rgba(214, 0, 255, 0.1)" }}
             onHoverStart={() => sounds.playClick()}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => onStart("quiz")}
-            className="cyber-button text-xl font-bold px-8 py-6 rounded-xl bg-cyber-purple/[0.05] border-2 flex flex-col items-center gap-2 min-w-[240px]"
+            className="cyber-button text-xl font-medium px-8 py-6 rounded-xl bg-cyber-purple/[0.01] border flex flex-col items-center gap-2 min-w-[240px]"
           >
-            <Brain className="w-8 h-8 mb-2" />
+            <Brain className="w-8 h-8 mb-2 opacity-60" />
             <span>MIND HEIST</span>
-            <span className="text-[10px] font-mono opacity-40 tracking-widest">KNOWLEDGE QUIZ</span>
+            <span className="text-[10px] font-mono opacity-30 tracking-widest">KNOWLEDGE QUIZ</span>
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(188, 19, 254, 0.3)" }}
+            whileHover={{ scale: 1.02, boxShadow: "0 0 10px rgba(214, 0, 255, 0.1)" }}
             onHoverStart={() => sounds.playClick()}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => onStart("grid")}
-            className="cyber-button text-xl font-bold px-8 py-6 rounded-xl bg-cyber-purple/[0.05] border-2 flex flex-col items-center gap-2 min-w-[240px]"
+            className="cyber-button text-xl font-medium px-8 py-6 rounded-xl bg-cyber-purple/[0.01] border flex flex-col items-center gap-2 min-w-[240px]"
           >
-            <Grid3X3 className="w-8 h-8 mb-2" />
+            <Grid3X3 className="w-8 h-8 mb-2 opacity-60" />
             <span>GRID HACK</span>
-            <span className="text-[10px] font-mono opacity-40 tracking-widest">PATTERN MATCH</span>
+            <span className="text-[10px] font-mono opacity-30 tracking-widest">PATTERN MATCH</span>
           </motion.button>
         </div>
 

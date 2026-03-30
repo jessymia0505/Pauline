@@ -10,8 +10,8 @@ export default function Contact() {
         className="w-full max-w-4xl text-center"
       >
         <div className="flex items-center gap-4 mb-12 justify-center">
-          <ShieldCheck className="w-12 h-12 text-cyber-purple drop-shadow-[0_0_10px_#bc13fe]" />
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter neon-text text-white uppercase">
+          <ShieldCheck className="w-12 h-12 text-cyber-purple/60 drop-shadow-[0_0_4px_rgba(214,0,255,0.2)]" />
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter neon-text text-white/90 uppercase">
             Contact Us
           </h2>
         </div>

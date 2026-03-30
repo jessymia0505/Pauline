@@ -20,7 +20,8 @@ export default function Game({ onGameOver }: GameProps) {
   });
 
   const [userInput, setUserInput] = useState("");
-  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string; correctAnswer?: string } | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const currentLevelConfig = LEVELS_CONFIG[gameState.level];
@@ -80,6 +81,7 @@ export default function Game({ onGameOver }: GameProps) {
         };
       });
       setUserInput("");
+      setSelectedAnswer(null);
       setFeedback(null);
       setIsTransitioning(false);
     }, 1500);
@@ -98,10 +100,15 @@ export default function Game({ onGameOver }: GameProps) {
       nextPuzzle();
     } else {
       sounds.playFailure();
-      setFeedback({ type: "error", message: "SYSTEM LOCKDOWN" });
+      setSelectedAnswer(userInput);
+      setFeedback({ 
+        type: "error", 
+        message: "SYSTEM LOCKDOWN",
+        correctAnswer: currentPuzzle.answer
+      });
       setTimeout(() => {
         handleGameOver();
-      }, 1500);
+      }, 3000);
     }
   };
 
@@ -136,11 +143,11 @@ export default function Game({ onGameOver }: GameProps) {
           <span>Hack Progress</span>
           <span>{Math.round(gameState.progress)}%</span>
         </div>
-        <div className="h-2 bg-white/5 rounded-full overflow-hidden border border-white/10">
+        <div className="h-1 bg-white/5 rounded-full overflow-hidden border border-white/5">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${gameState.progress}%` }}
-            className="h-full bg-gradient-to-r from-cyber-purple to-white shadow-[0_0_10px_rgba(188,19,254,0.4)]"
+            className="h-full bg-gradient-to-r from-cyber-purple/60 to-white/40 shadow-[0_0_4px_rgba(214,0,255,0.2)]"
           />
         </div>
       </div>
@@ -161,7 +168,7 @@ export default function Game({ onGameOver }: GameProps) {
               <span className="text-xs uppercase tracking-widest font-bold">Security Layer {gameState.currentPuzzleIndex + 1}</span>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 font-mono leading-relaxed">
+            <h2 className="text-2xl md:text-3xl font-medium mb-8 font-mono leading-relaxed opacity-90">
               {currentPuzzle.question}
             </h2>
 
@@ -172,8 +179,11 @@ export default function Game({ onGameOver }: GameProps) {
                     <button
                       key={option}
                       type="button"
+                      disabled={!!feedback}
                       onClick={() => {
+                        if (feedback) return;
                         setUserInput(option);
+                        setSelectedAnswer(option);
                         // Auto submit for multiple choice
                         const isCorrect = option.trim().toLowerCase() === currentPuzzle.answer.toLowerCase();
                         if (isCorrect) {
@@ -183,14 +193,24 @@ export default function Game({ onGameOver }: GameProps) {
                           nextPuzzle();
                         } else {
                           sounds.playFailure();
-                          setFeedback({ type: "error", message: "SYSTEM LOCKDOWN" });
+                          setFeedback({ 
+                            type: "error", 
+                            message: "SYSTEM LOCKDOWN",
+                            correctAnswer: currentPuzzle.answer
+                          });
                           setTimeout(() => {
                             handleGameOver();
-                          }, 1500);
+                          }, 3000);
                         }
                       }}
-                      className={`p-4 rounded-xl border transition-all text-left font-mono hover:bg-cyber-purple/10 ${
-                        userInput === option ? 'border-cyber-purple bg-cyber-purple/20' : 'border-white/10'
+                      className={`p-4 rounded-xl border transition-all text-left font-mono ${
+                        feedback?.type === 'error' && option.toLowerCase() === currentPuzzle.answer.toLowerCase()
+                          ? 'border-green-500 bg-green-500/20 text-green-500'
+                          : feedback?.type === 'error' && selectedAnswer === option
+                            ? 'border-red-500 bg-red-500/20 text-red-500'
+                            : userInput === option 
+                              ? 'border-cyber-purple bg-cyber-purple/20' 
+                              : 'border-white/10 hover:bg-cyber-purple/10'
                       }`}
                     >
                       {option}
@@ -237,6 +257,12 @@ export default function Game({ onGameOver }: GameProps) {
                   }`}>
                     {feedback.message}
                   </h3>
+                  {feedback.type === 'error' && feedback.correctAnswer && (
+                    <div className="mt-4 text-center">
+                      <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-1">Correct Decryption Key</p>
+                      <p className="text-green-500 font-mono text-xl font-bold">{feedback.correctAnswer}</p>
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -247,7 +273,7 @@ export default function Game({ onGameOver }: GameProps) {
             animate={{ opacity: 1 }}
             className="text-center py-20"
           >
-            <div className="w-16 h-16 border-4 border-cyber-purple border-t-transparent rounded-full animate-spin mx-auto mb-6" />
+            <div className="w-12 h-12 border-2 border-cyber-purple border-t-transparent rounded-full animate-spin mx-auto mb-6" />
             <p className="text-cyber-purple font-mono tracking-widest animate-pulse">PENETRATING NEXT LAYER...</p>
           </motion.div>
         )}

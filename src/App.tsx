@@ -8,6 +8,7 @@ import GridHack from "./components/GridHack";
 import Leaderboard from "./components/Leaderboard";
 import Contact from "./components/Contact";
 import HowToPlay from "./components/HowToPlay";
+import GameOverModal from "./components/GameOverModal";
 import { Level, GameMode } from "./types";
 import { sounds } from "./lib/sounds";
 import { saveScore } from "./lib/storage";
@@ -19,6 +20,8 @@ export default function App() {
   const [gameMode, setGameMode] = useState<GameMode>("quiz");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [lastGameResult, setLastGameResult] = useState<{ score: number; level: Level; entryId?: string } | null>(null);
+  const [showGameOverModal, setShowGameOverModal] = useState(false);
+  const [pendingScore, setPendingScore] = useState<{ score: number; level: Level } | null>(null);
 
   const handleStartGame = (mode: GameMode = "quiz") => {
     sounds.playStart();
@@ -28,13 +31,24 @@ export default function App() {
 
   const handleGameOver = (score: number, level: Level) => {
     sounds.playFailure();
-    setLastGameResult({ score, level });
-    
-    // Save score
-    const username = prompt("SYSTEM BREACHED! Enter your operative handle:") || "OPERATIVE";
-    const entry = saveScore(score, level, username);
-    
-    setLastGameResult({ score, level, entryId: entry.id });
+    setPendingScore({ score, level });
+    setShowGameOverModal(true);
+  };
+
+  const handleSaveScore = (username: string) => {
+    if (!pendingScore) return;
+    const entry = saveScore(pendingScore.score, pendingScore.level, username);
+    setLastGameResult({ ...pendingScore, entryId: entry.id });
+    setShowGameOverModal(false);
+    setPendingScore(null);
+    setCurrentView("leaderboard");
+  };
+
+  const handleCancelSave = () => {
+    if (!pendingScore) return;
+    setLastGameResult({ ...pendingScore });
+    setShowGameOverModal(false);
+    setPendingScore(null);
     setCurrentView("leaderboard");
   };
 
@@ -83,6 +97,17 @@ export default function App() {
         }} 
         onNavigate={(view) => handleNavigate(view as View)} 
       />
+
+      <AnimatePresence>
+        {showGameOverModal && pendingScore && (
+          <GameOverModal
+            score={pendingScore.score}
+            level={pendingScore.level}
+            onSave={handleSaveScore}
+            onCancel={handleCancelSave}
+          />
+        )}
+      </AnimatePresence>
 
       <main className="relative z-10">
         <AnimatePresence mode="wait">

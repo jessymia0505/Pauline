@@ -25,8 +25,8 @@ export default function Leaderboard({ lastResult, onRestart }: LeaderboardProps)
         className="w-full max-w-4xl"
       >
         <div className="flex items-center gap-4 mb-12 justify-center">
-          <Trophy className="w-12 h-12 text-cyber-purple/80 drop-shadow-[0_0_8px_rgba(188,19,254,0.4)]" />
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter neon-text text-white">
+          <Trophy className="w-12 h-12 text-cyber-purple/60 drop-shadow-[0_0_4px_rgba(214,0,255,0.2)]" />
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter neon-text text-white/90">
             TOP OPERATIVES
           </h2>
         </div>

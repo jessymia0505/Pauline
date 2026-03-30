@@ -19,7 +19,8 @@ export default function GridHack({ onGameOver }: GridHackProps) {
   const [targetSequence, setTargetSequence] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [selectedCell, setSelectedCell] = useState<number | null>(null);
+  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string; correctHash?: string } | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const getGridSize = (lvl: Level) => {
@@ -46,6 +47,7 @@ export default function GridHack({ onGameOver }: GridHackProps) {
     setGrid(newGrid);
     setTargetSequence(newTarget);
     setCurrentIndex(0);
+    setSelectedCell(null);
     setTimeLeft(LEVELS_CONFIG[lvl].timer);
     setIsTransitioning(false);
   }, []);
@@ -103,8 +105,13 @@ export default function GridHack({ onGameOver }: GridHackProps) {
     } else {
       // Wrong choice
       sounds.playFailure();
-      setFeedback({ type: "error", message: "HASH MISMATCH" });
-      setTimeout(() => handleGameOver(), 1500);
+      setSelectedCell(index);
+      setFeedback({ 
+        type: "error", 
+        message: "HASH MISMATCH",
+        correctHash: targetSequence[currentIndex]
+      });
+      setTimeout(() => handleGameOver(), 3000);
     }
   };
 
@@ -136,8 +143,8 @@ export default function GridHack({ onGameOver }: GridHackProps) {
         </div>
       </div>
 
-      <div className="w-full max-w-2xl mb-8 glass-panel p-6 border-cyber-purple/20 bg-cyber-purple/[0.02]">
-        <div className="flex items-center gap-2 mb-4 text-cyber-purple/80">
+      <div className="w-full max-w-2xl mb-8 glass-panel p-6 border-cyber-purple/10 bg-cyber-purple/[0.01]">
+        <div className="flex items-center gap-2 mb-4 text-cyber-purple/60">
           <Target className="w-4 h-4" />
           <span className="text-xs uppercase tracking-widest font-bold">Target Hash Sequence</span>
         </div>
@@ -170,10 +177,17 @@ export default function GridHack({ onGameOver }: GridHackProps) {
         {grid.map((hex, i) => (
           <motion.button
             key={i}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={!feedback ? { scale: 1.05 } : {}}
+            whileTap={!feedback ? { scale: 0.95 } : {}}
             onClick={() => handleCellClick(hex, i)}
-            className="aspect-square flex items-center justify-center rounded border border-white/10 bg-black/40 font-mono text-sm md:text-base hover:border-cyber-purple hover:bg-cyber-purple/10 transition-all"
+            disabled={!!feedback}
+            className={`aspect-square flex items-center justify-center rounded border font-mono text-sm md:text-base transition-all ${
+              feedback?.type === 'error' && hex === targetSequence[currentIndex]
+                ? 'border-green-500 bg-green-500/20 text-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]'
+                : feedback?.type === 'error' && selectedCell === i
+                  ? 'border-red-500 bg-red-500/20 text-red-500 shadow-[0_0_10px_rgba(239,68,68,0.3)]'
+                  : 'border-white/10 bg-black/40 hover:border-cyber-purple hover:bg-cyber-purple/10'
+            }`}
           >
             {hex}
           </motion.button>
@@ -200,13 +214,19 @@ export default function GridHack({ onGameOver }: GridHackProps) {
             }`}>
               {feedback.message}
             </h3>
+            {feedback.type === 'error' && feedback.correctHash && (
+              <div className="mt-4 text-center">
+                <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-1">Correct Hash Required</p>
+                <p className="text-green-500 font-mono text-xl font-bold">{feedback.correctHash}</p>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
 
       {isTransitioning && (
         <div className="fixed inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xl z-40">
-          <div className="w-16 h-16 border-4 border-cyber-purple border-t-transparent rounded-full animate-spin mb-6" />
+          <div className="w-12 h-12 border-2 border-cyber-purple border-t-transparent rounded-full animate-spin mb-6" />
           <p className="text-cyber-purple font-mono tracking-widest animate-pulse">RECALIBRATING HASH GRID...</p>
         </div>
       )}

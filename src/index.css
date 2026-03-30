@@ -2,45 +2,45 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cyber-purple: #bc13fe;
-  --color-cyber-dark: #050505;
-  --color-cyber-glass: rgba(10, 10, 10, 0.4);
+  --color-cyber-purple: #d600ff;
+  --color-cyber-dark: #000000;
+  --color-cyber-glass: rgba(0, 0, 0, 0.2);
   
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
   body {
-    @apply bg-cyber-dark text-white font-sans selection:bg-cyber-purple/40 selection:text-white;
+    @apply bg-cyber-dark text-white/90 font-sans selection:bg-cyber-purple/20 selection:text-white;
     background-image: 
-      radial-gradient(circle at 50% 50%, rgba(188, 19, 254, 0.03) 0%, transparent 70%),
-      linear-gradient(to bottom, #050505, #080808);
+      radial-gradient(circle at 50% 50%, rgba(214, 0, 255, 0.01) 0%, transparent 85%),
+      linear-gradient(to bottom, #000000, #030303);
     min-height: 100vh;
   }
 }
 
 @layer components {
   .neon-text {
-    text-shadow: 0 0 4px rgba(188, 19, 254, 0.4), 0 0 6px rgba(188, 19, 254, 0.2);
+    text-shadow: 0 0 1px rgba(214, 0, 255, 0.2);
   }
   
   .neon-border {
-    box-shadow: 0 0 4px rgba(188, 19, 254, 0.15);
-    border: 1px solid rgba(188, 19, 254, 0.2);
+    box-shadow: 0 0 1px rgba(214, 0, 255, 0.05);
+    border: 0.5px solid rgba(214, 0, 255, 0.1);
   }
 
   .glass-panel {
-    @apply bg-cyber-glass backdrop-blur-sm border border-white/5 rounded-xl;
+    @apply bg-cyber-glass backdrop-blur-md border border-white/5 rounded-xl;
   }
 
   .cyber-button {
-    @apply relative px-6 py-2 overflow-hidden transition-all duration-300 border border-cyber-purple/20 text-cyber-purple/70 hover:text-white hover:bg-cyber-purple/10 hover:border-cyber-purple;
-    box-shadow: 0 0 8px rgba(188, 19, 254, 0.05);
+    @apply relative px-6 py-2 overflow-hidden transition-all duration-300 border border-cyber-purple/5 text-cyber-purple/50 hover:text-white/90 hover:bg-cyber-purple/5 hover:border-cyber-purple/20;
+    box-shadow: 0 0 2px rgba(214, 0, 255, 0.02);
   }
 
   .cyber-button::before {
     content: '';
-    @apply absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-500;
+    @apply absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-all duration-300;
   }
 
   .cyber-button:hover::before {
@@ -58,11 +58,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: rgba(188, 19, 254, 0.05);
-  opacity: 0.3;
+  height: 1px;
+  background: rgba(214, 0, 255, 0.12);
+  opacity: 0.15;
   pointer-events: none;
-  animation: scanline 8s linear infinite;
+  animation: scanline 3s linear infinite;
   z-index: 50;
 }
 
