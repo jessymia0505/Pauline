@@ -51,7 +51,7 @@ export default function HowToPlay() {
       >
         <div className="flex items-center gap-4 mb-12 justify-center">
           <HelpCircle className="w-12 h-12 text-cyber-purple/80 drop-shadow-[0_0_8px_rgba(188,19,254,0.4)]" />
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter neon-text text-white">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white">
             MISSION PROTOCOLS
           </h2>
         </div>
@@ -146,7 +146,7 @@ export default function HowToPlay() {
             onMouseEnter={() => sounds.playClick()}
             className="cyber-button rounded-lg font-bold px-12"
           >
-            START MISSION
+            START GAME
           </button>
         </div>
       </motion.div>

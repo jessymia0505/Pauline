@@ -18,7 +18,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="text-2xl font-medium tracking-widest neon-text text-cyber-purple/70"
+        className="text-2xl font-medium tracking-widest text-cyber-purple/60"
       >
         VERSE
       </motion.div>

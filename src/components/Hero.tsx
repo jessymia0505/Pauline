@@ -11,8 +11,8 @@ export default function Hero({ onStart }: HeroProps) {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden pt-20">
       {/* Background elements */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyber-purple/5 rounded-full blur-[100px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-purple/[0.02] rounded-full blur-[120px] animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyber-purple/[0.02] rounded-full blur-[100px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-purple/[0.01] rounded-full blur-[120px]" />
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
@@ -26,7 +26,7 @@ export default function Hero({ onStart }: HeroProps) {
           <Cpu className="w-8 h-8 text-cyber-purple/40" />
         </div>
 
-        <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tighter neon-text text-white/90">
+        <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tighter text-white/90">
           VERSE MIND HEIST
         </h1>
         
@@ -43,8 +43,8 @@ export default function Hero({ onStart }: HeroProps) {
             className="cyber-button text-xl font-medium px-8 py-6 rounded-xl bg-cyber-purple/[0.01] border flex flex-col items-center gap-2 min-w-[240px]"
           >
             <Brain className="w-8 h-8 mb-2 opacity-60" />
-            <span>MIND HEIST</span>
-            <span className="text-[10px] font-mono opacity-30 tracking-widest">KNOWLEDGE QUIZ</span>
+            <span>START GAME</span>
+            <span className="text-[10px] font-mono opacity-30 tracking-widest">MIND HEIST</span>
           </motion.button>
 
           <motion.button
@@ -55,8 +55,8 @@ export default function Hero({ onStart }: HeroProps) {
             className="cyber-button text-xl font-medium px-8 py-6 rounded-xl bg-cyber-purple/[0.01] border flex flex-col items-center gap-2 min-w-[240px]"
           >
             <Grid3X3 className="w-8 h-8 mb-2 opacity-60" />
-            <span>GRID HACK</span>
-            <span className="text-[10px] font-mono opacity-30 tracking-widest">PATTERN MATCH</span>
+            <span>START GAME</span>
+            <span className="text-[10px] font-mono opacity-30 tracking-widest">GRID HACK</span>
           </motion.button>
         </div>
 

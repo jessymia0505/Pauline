@@ -21,21 +21,21 @@
 
 @layer components {
   .neon-text {
-    text-shadow: 0 0 1px rgba(214, 0, 255, 0.2);
+    text-shadow: none;
   }
   
   .neon-border {
-    box-shadow: 0 0 1px rgba(214, 0, 255, 0.05);
-    border: 0.5px solid rgba(214, 0, 255, 0.1);
+    box-shadow: none;
+    border: 0.5px solid rgba(214, 0, 255, 0.05);
   }
 
   .glass-panel {
-    @apply bg-cyber-glass backdrop-blur-md border border-white/5 rounded-xl;
+    @apply bg-cyber-glass backdrop-blur-sm border border-white/[0.02] rounded-xl;
   }
 
   .cyber-button {
-    @apply relative px-6 py-2 overflow-hidden transition-all duration-300 border border-cyber-purple/5 text-cyber-purple/50 hover:text-white/90 hover:bg-cyber-purple/5 hover:border-cyber-purple/20;
-    box-shadow: 0 0 2px rgba(214, 0, 255, 0.02);
+    @apply relative px-6 py-2 overflow-hidden transition-all duration-300 border border-cyber-purple/[0.03] text-cyber-purple/40 hover:text-white/90 hover:bg-cyber-purple/[0.03] hover:border-cyber-purple/10;
+    box-shadow: none;
   }
 
   .cyber-button::before {

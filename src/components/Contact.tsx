@@ -11,7 +11,7 @@ export default function Contact() {
       >
         <div className="flex items-center gap-4 mb-12 justify-center">
           <ShieldCheck className="w-12 h-12 text-cyber-purple/60 drop-shadow-[0_0_4px_rgba(214,0,255,0.2)]" />
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter neon-text text-white/90 uppercase">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white/90 uppercase">
             Contact Us
           </h2>
         </div>
@@ -32,7 +32,7 @@ export default function Contact() {
               <Send className="w-10 h-10 text-cyber-purple group-hover:scale-110 transition-transform" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold mb-2 neon-text text-cyber-purple">TELEGRAM</h3>
+              <h3 className="text-2xl font-bold mb-2 text-cyber-purple">TELEGRAM</h3>
               <p className="text-white/60 font-mono">@Getverse</p>
             </div>
           </motion.a>
@@ -48,7 +48,7 @@ export default function Contact() {
               <Twitter className="w-10 h-10 text-cyber-purple group-hover:scale-110 transition-transform" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold mb-2 neon-text text-cyber-purple">X (TWITTER)</h3>
+              <h3 className="text-2xl font-bold mb-2 text-cyber-purple">X (TWITTER)</h3>
               <p className="text-white/60 font-mono">@VerseEcosystem</p>
             </div>
           </motion.a>

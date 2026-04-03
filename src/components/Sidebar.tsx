@@ -35,9 +35,9 @@ export default function Sidebar({ isOpen, onClose, onNavigate }: SidebarProps) {
             className="fixed top-0 left-0 h-full w-72 bg-cyber-dark border-r border-cyber-purple/30 z-[70] p-6"
           >
             <div className="flex justify-between items-center mb-12">
-              <span className="text-xl font-medium neon-text text-cyber-purple/70">MENU</span>
+              <span className="text-xl font-medium text-cyber-purple/60">MENU</span>
               <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg">
-                <X className="w-6 h-6 text-cyber-purple/60" />
+                <X className="w-6 h-6 text-cyber-purple/40" />
               </button>
             </div>
 

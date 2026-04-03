@@ -59,9 +59,9 @@ export default function Leaderboard({ lastResult, onRestart }: LeaderboardProps)
               <div className="flex items-end">
                 <button 
                   onClick={onRestart}
-                  className="w-full py-2 bg-cyber-purple/80 text-white text-xs font-bold rounded hover:bg-cyber-purple transition-colors uppercase tracking-widest"
+                  className="w-full py-2 bg-cyber-purple/60 text-white text-xs font-bold rounded hover:bg-cyber-purple/80 transition-colors uppercase tracking-widest"
                 >
-                  Retry Heist
+                  START GAME
                 </button>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function Leaderboard({ lastResult, onRestart }: LeaderboardProps)
             onMouseEnter={() => sounds.playClick()}
             className="cyber-button rounded-lg font-bold"
           >
-            START YOUR HEIST
+            START GAME
           </button>
         </div>
       </motion.div>
