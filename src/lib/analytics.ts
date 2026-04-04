@@ -16,6 +16,22 @@ if (typeof window !== 'undefined') {
 }
 
 /**
+ * Tracks a pageview in Plausible Analytics
+ * @param path Optional path to track, defaults to current location
+ */
+export const trackPageView = (path?: string) => {
+  if (typeof window !== 'undefined' && window.plausible) {
+    try {
+      const url = path ? `${window.location.origin}/${path}` : window.location.href;
+      window.plausible('pageview', { url });
+      console.log(`[Analytics] Tracked pageview: ${url}`);
+    } catch (error) {
+      console.error('[Analytics] Error tracking pageview:', error);
+    }
+  }
+};
+
+/**
  * Tracks a custom event in Plausible Analytics
  * @param eventName The name of the event to track
  * @param props Optional properties to include with the event
@@ -44,4 +60,5 @@ export const AnalyticsEvents = {
   VIEW_CONTACT: 'View Contact',
   SCORE_SAVED: 'Score Saved',
   MENU_OPEN: 'Menu Open',
+  HEARTBEAT: 'Heartbeat',
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -12,7 +12,7 @@ import GameOverModal from "./components/GameOverModal";
 import { Level, GameMode, LEVELS_CONFIG } from "./types";
 import { sounds } from "./lib/sounds";
 import { saveScore } from "./lib/storage";
-import { trackEvent, AnalyticsEvents } from "./lib/analytics";
+import { trackEvent, trackPageView, AnalyticsEvents } from "./lib/analytics";
 
 type View = "home" | "game" | "leaderboard" | "contact" | "how-to-play";
 
@@ -23,11 +23,24 @@ export default function App() {
   const [lastGameResult, setLastGameResult] = useState<{ score: number; level: Level; entryId?: string } | null>(null);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [pendingScore, setPendingScore] = useState<{ score: number; level: Level } | null>(null);
+  
+  useEffect(() => {
+    // Track initial home view
+    trackPageView("home");
+
+    // Heartbeat to keep session alive and reduce bounce rate
+    const heartbeatInterval = setInterval(() => {
+      trackEvent(AnalyticsEvents.HEARTBEAT);
+    }, 30000); // Every 30 seconds
+
+    return () => clearInterval(heartbeatInterval);
+  }, []);
 
   const handleStartGame = (mode: GameMode = "quiz") => {
     sounds.playStart();
     setGameMode(mode);
     setCurrentView("game");
+    trackPageView("game");
     trackEvent(AnalyticsEvents.GAME_START, { mode });
   };
 
@@ -45,6 +58,7 @@ export default function App() {
     setShowGameOverModal(false);
     setPendingScore(null);
     setCurrentView("leaderboard");
+    trackPageView("leaderboard");
     trackEvent(AnalyticsEvents.SCORE_SAVED, { score: pendingScore.score, username });
   };
 
@@ -54,11 +68,13 @@ export default function App() {
     setShowGameOverModal(false);
     setPendingScore(null);
     setCurrentView("leaderboard");
+    trackPageView("leaderboard");
   };
 
   const handleNavigate = (view: View) => {
     sounds.playClick();
     setCurrentView(view);
+    trackPageView(view);
     
     // Track navigation events
     switch(view) {
