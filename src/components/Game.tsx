@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Timer, Shield, Activity, Zap, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { GameState, Level, LEVELS_CONFIG, PUZZLES, Puzzle } from "../types";
 import { sounds } from "../lib/sounds";
+import { trackEvent, AnalyticsEvents } from "../lib/analytics";
 
 interface GameProps {
   onGameOver: (score: number, level: Level) => void;
@@ -64,6 +65,12 @@ export default function Game({ onGameOver }: GameProps) {
           }
           const nextLevel = (prev.level + 1) as Level;
           sounds.playLevelUp();
+          trackEvent(AnalyticsEvents.LEVEL_COMPLETE, { 
+            level: prev.level, 
+            levelName: LEVELS_CONFIG[prev.level].name,
+            nextLevel,
+            nextLevelName: LEVELS_CONFIG[nextLevel].name
+          });
           return {
             ...prev,
             level: nextLevel,

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Timer, Activity, Zap, Shield, Target, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { Level, LEVELS_CONFIG } from "../types";
 import { sounds } from "../lib/sounds";
+import { trackEvent, AnalyticsEvents } from "../lib/analytics";
 
 interface GridHackProps {
   onGameOver: (score: number, level: Level) => void;
@@ -91,9 +92,23 @@ export default function GridHack({ onGameOver }: GridHackProps) {
         setScore(prev => prev + (timeLeft * level * 20));
         
         if (level === 4) {
+          trackEvent(AnalyticsEvents.LEVEL_COMPLETE, { 
+            level, 
+            levelName: LEVELS_CONFIG[level].name,
+            mode: 'grid-hack', 
+            status: 'completed' 
+          });
           setTimeout(() => handleGameOver(), 1500);
         } else {
           setIsTransitioning(true);
+          const nextLevel = (level + 1) as Level;
+          trackEvent(AnalyticsEvents.LEVEL_COMPLETE, { 
+            level, 
+            levelName: LEVELS_CONFIG[level].name,
+            mode: 'grid-hack', 
+            nextLevel,
+            nextLevelName: LEVELS_CONFIG[nextLevel].name
+          });
           setTimeout(() => {
             setFeedback(null);
             setLevel(prev => (prev + 1) as Level);

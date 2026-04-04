@@ -9,9 +9,10 @@ import Leaderboard from "./components/Leaderboard";
 import Contact from "./components/Contact";
 import HowToPlay from "./components/HowToPlay";
 import GameOverModal from "./components/GameOverModal";
-import { Level, GameMode } from "./types";
+import { Level, GameMode, LEVELS_CONFIG } from "./types";
 import { sounds } from "./lib/sounds";
 import { saveScore } from "./lib/storage";
+import { trackEvent, AnalyticsEvents } from "./lib/analytics";
 
 type View = "home" | "game" | "leaderboard" | "contact" | "how-to-play";
 
@@ -27,12 +28,14 @@ export default function App() {
     sounds.playStart();
     setGameMode(mode);
     setCurrentView("game");
+    trackEvent(AnalyticsEvents.GAME_START, { mode });
   };
 
   const handleGameOver = (score: number, level: Level) => {
     sounds.playFailure();
     setPendingScore({ score, level });
     setShowGameOverModal(true);
+    trackEvent(AnalyticsEvents.GAME_OVER, { score, level: LEVELS_CONFIG[level].name });
   };
 
   const handleSaveScore = (username: string) => {
@@ -42,6 +45,7 @@ export default function App() {
     setShowGameOverModal(false);
     setPendingScore(null);
     setCurrentView("leaderboard");
+    trackEvent(AnalyticsEvents.SCORE_SAVED, { score: pendingScore.score, username });
   };
 
   const handleCancelSave = () => {
@@ -55,6 +59,19 @@ export default function App() {
   const handleNavigate = (view: View) => {
     sounds.playClick();
     setCurrentView(view);
+    
+    // Track navigation events
+    switch(view) {
+      case "leaderboard":
+        trackEvent(AnalyticsEvents.VIEW_LEADERBOARD);
+        break;
+      case "how-to-play":
+        trackEvent(AnalyticsEvents.VIEW_HOW_TO_PLAY);
+        break;
+      case "contact":
+        trackEvent(AnalyticsEvents.VIEW_CONTACT);
+        break;
+    }
   };
 
   const renderView = () => {
@@ -87,6 +104,7 @@ export default function App() {
       <Navbar onMenuClick={() => {
         sounds.playClick();
         setIsSidebarOpen(true);
+        trackEvent(AnalyticsEvents.MENU_OPEN);
       }} />
       
       <Sidebar 
