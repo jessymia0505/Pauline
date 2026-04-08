@@ -36,6 +36,9 @@ export const PUZZLES: Record<Level, Puzzle[]> = {
     { id: "1-5", question: "What is a 'Seed Phrase' used for?", options: ["Planting crypto", "Backing up a wallet", "Trading faster", "Mining blocks"], answer: "Backing up a wallet" },
     { id: "1-6", question: "What is a 'Bull Market'?", options: ["Prices falling", "Prices rising", "Market closed", "No trading"], answer: "Prices rising" },
     { id: "1-7", question: "What is the term for a digital wallet that is NOT connected to the internet?", options: ["Hot Wallet", "Cold Wallet", "Fast Wallet", "Cloud Wallet"], answer: "Cold Wallet" },
+    { id: "1-8", question: "What is 'FUD'?", options: ["Fear, Uncertainty, Doubt", "Fast Upward Direction", "Financial Utility Data", "Fixed Unit Deposit"], answer: "Fear, Uncertainty, Doubt" },
+    { id: "1-9", question: "What is a 'Whale' in crypto?", options: ["A large investor", "A slow transaction", "A type of mining rig", "A sea-themed token"], answer: "A large investor" },
+    { id: "1-10", question: "What does 'ATH' stand for?", options: ["All-Time High", "Always Trade High", "Automated Token Hub", "Active Trading Hour"], answer: "All-Time High" },
   ],
   2: [
     { id: "2-1", question: "Who is the pseudonymous creator of Bitcoin?", options: ["Vitalik Buterin", "Satoshi Nakamoto", "Elon Musk", "Charlie Lee"], answer: "Satoshi Nakamoto" },
@@ -45,6 +48,9 @@ export const PUZZLES: Record<Level, Puzzle[]> = {
     { id: "2-5", question: "What is 'Mining' in the context of Bitcoin?", options: ["Digging for gold", "Validating transactions", "Printing money", "Buying tokens"], answer: "Validating transactions" },
     { id: "2-6", question: "What is a 'Blockchain'?", options: ["A physical chain", "A distributed ledger", "A central database", "A social network"], answer: "A distributed ledger" },
     { id: "2-7", question: "What happens to the Bitcoin block reward roughly every 4 years?", options: ["It doubles", "It stays same", "It is halved", "It is removed"], answer: "It is halved" },
+    { id: "2-8", question: "What is a 'Hard Fork'?", options: ["A radical change to protocol", "A type of wallet", "A fast transaction", "A mining tool"], answer: "A radical change to protocol" },
+    { id: "2-9", question: "What is 'Gas' in crypto?", options: ["Transaction fees", "Mining power", "Token name", "Wallet type"], answer: "Transaction fees" },
+    { id: "2-10", question: "What is a 'Stablecoin'?", options: ["A coin pegged to an asset", "A coin that never moves", "A coin for horses", "A coin with no value"], answer: "A coin pegged to an asset" },
   ],
   3: [
     { id: "3-1", question: "What is the primary DEX for the Verse ecosystem?", options: ["Uniswap", "Verse DEX", "PancakeSwap", "Sushiswap"], answer: "Verse DEX" },
@@ -55,6 +61,8 @@ export const PUZZLES: Record<Level, Puzzle[]> = {
     { id: "3-6", question: "What is a 'Liquidity Pool'?", options: ["A pool of cash", "Tokens used for trading", "A group of miners", "A backup server"], answer: "Tokens used for trading" },
     { id: "3-7", question: "What is 'Yield Farming'?", options: ["Growing digital crops", "Earning rewards on crypto", "Buying cheap tokens", "Selling NFTs"], answer: "Earning rewards on crypto" },
     { id: "3-8", question: "Which wallet is the official home for the Verse ecosystem?", options: ["MetaMask", "Bitcoin.com Wallet", "Trust Wallet", "Ledger"], answer: "Bitcoin.com Wallet" },
+    { id: "3-9", question: "What is an 'NFT'?", options: ["Non-Fungible Token", "New Financial Tool", "Network File Transfer", "Node Functional Test"], answer: "Non-Fungible Token" },
+    { id: "3-10", question: "What is a 'DAO'?", options: ["Decentralized Autonomous Organization", "Digital Asset Office", "Distributed Access Only", "Direct Asset Ownership"], answer: "Decentralized Autonomous Organization" },
   ],
   4: [
     { id: "4-1", question: "What is 'Double Spending'?", options: ["Spending twice as much", "Spending the same coin twice", "Buying two coins", "Paying double fees"], answer: "Spending the same coin twice" },
@@ -65,5 +73,7 @@ export const PUZZLES: Record<Level, Puzzle[]> = {
     { id: "4-6", question: "What does 'DYOR' stand for?", options: ["Do Your Own Research", "Do Your Own Risk", "Digital Yield On Returns", "Daily Yield On Research"], answer: "Do Your Own Research" },
     { id: "4-7", question: "What is a 'Whitepaper' in crypto?", options: ["A blank page", "Technical document", "A marketing flyer", "A list of users"], answer: "Technical document" },
     { id: "4-8", question: "What is the term for the process of converting sensitive data into a fixed-size string of characters?", options: ["Hashing", "Mining", "Staking", "Trading"], answer: "Hashing" },
+    { id: "4-9", question: "What is 'Layer 2' in blockchain?", options: ["A scaling solution", "A second wallet", "A backup chain", "A type of miner"], answer: "A scaling solution" },
+    { id: "4-10", question: "What is 'Slippage' in trading?", options: ["Price difference during execution", "Losing your wallet", "A slow network", "A type of token"], answer: "Price difference during execution" },
   ],
 };

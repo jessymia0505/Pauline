@@ -20,13 +20,34 @@ export default function Game({ onGameOver }: GameProps) {
     timeLeft: LEVELS_CONFIG[1].timer,
   });
 
+  const [shuffledPuzzles, setShuffledPuzzles] = useState<Puzzle[]>([]);
   const [userInput, setUserInput] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string; correctAnswer?: string } | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  const initLevel = useCallback((lvl: Level) => {
+    const levelPuzzles = PUZZLES[lvl];
+    const shuffled = shuffleArray(levelPuzzles);
+    // Limit to the number of puzzles configured for this level
+    setShuffledPuzzles(shuffled.slice(0, LEVELS_CONFIG[lvl].puzzlesCount));
+  }, []);
+
+  useEffect(() => {
+    initLevel(gameState.level);
+  }, [gameState.level, initLevel]);
+
   const currentLevelConfig = LEVELS_CONFIG[gameState.level];
-  const currentPuzzle: Puzzle = PUZZLES[gameState.level][gameState.currentPuzzleIndex];
+  const currentPuzzle: Puzzle | undefined = shuffledPuzzles[gameState.currentPuzzleIndex];
 
   const handleGameOver = useCallback(() => {
     setGameState(prev => ({ ...prev, isGameOver: true }));
@@ -160,7 +181,7 @@ export default function Game({ onGameOver }: GameProps) {
       </div>
 
       <AnimatePresence mode="wait">
-        {!isTransitioning ? (
+        {!isTransitioning && currentPuzzle ? (
           <motion.div
             key={currentPuzzle.id}
             initial={{ opacity: 0, y: 20 }}

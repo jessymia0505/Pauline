@@ -29,11 +29,32 @@ export default function App() {
     trackPageView("home");
 
     // Heartbeat to keep session alive and reduce bounce rate
-    const heartbeatInterval = setInterval(() => {
-      trackEvent(AnalyticsEvents.HEARTBEAT);
-    }, 30000); // Every 30 seconds
+    // Increased interval to 2 minutes to avoid "high-ratio" anomalies
+    let lastActivity = Date.now();
+    const updateActivity = () => { lastActivity = Date.now(); };
+    
+    window.addEventListener('mousemove', updateActivity);
+    window.addEventListener('keydown', updateActivity);
+    window.addEventListener('click', updateActivity);
 
-    return () => clearInterval(heartbeatInterval);
+    const heartbeatInterval = setInterval(() => {
+      // Only track heartbeat if:
+      // 1. The document is visible
+      // 2. There was activity in the last 5 minutes
+      const isVisible = document.visibilityState === 'visible';
+      const wasActiveRecently = Date.now() - lastActivity < 300000; // 5 minutes
+
+      if (isVisible && wasActiveRecently) {
+        trackEvent(AnalyticsEvents.HEARTBEAT);
+      }
+    }, 120000); // Every 2 minutes
+
+    return () => {
+      clearInterval(heartbeatInterval);
+      window.removeEventListener('mousemove', updateActivity);
+      window.removeEventListener('keydown', updateActivity);
+      window.removeEventListener('click', updateActivity);
+    };
   }, []);
 
   const handleStartGame = (mode: GameMode = "quiz") => {
