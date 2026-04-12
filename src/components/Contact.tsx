@@ -54,7 +54,7 @@ export default function Contact() {
           </motion.a>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 text-cyber-purple/40 font-mono text-sm">
+        <div className="flex flex-wrap justify-center gap-8 text-cyber-white/40 font-mono text-sm">
           <div className="flex items-center gap-2"><Mail className="w-4 h-4" /> support@verse.com</div>
           <div className="flex items-center gap-2"><Globe className="w-4 h-4" /> verse.io</div>
         </div>

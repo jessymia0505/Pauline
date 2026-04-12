@@ -15,13 +15,33 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
         <Menu className="w-6 h-6 text-cyber-purple" />
       </button>
 
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="text-2xl font-medium tracking-widest text-cyber-purple/60"
-      >
-        VERSE
-      </motion.div>
+      <div className="flex items-center gap-3">
+        <img 
+          src="/logo.png" 
+          alt="Verse Logo" 
+          className="w-10 h-10 rounded-full border border-cyber-purple/30 shadow-[0_0_10px_rgba(214,0,255,0.2)]"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            // Fallback to a styled V if image fails to load
+            e.currentTarget.style.display = 'none';
+            const fallback = document.getElementById('logo-fallback');
+            if (fallback) fallback.style.display = 'flex';
+          }}
+        />
+        <div 
+          id="logo-fallback"
+          className="hidden w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 items-center justify-center border border-cyber-purple/30 shadow-[0_0_10px_rgba(214,0,255,0.2)]"
+        >
+          <span className="text-white font-black text-xl">V</span>
+        </div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-2xl font-black tracking-widest text-cyber-white"
+        >
+          VERSE
+        </motion.div>
+      </div>
 
       <a 
         href="https://analytics.vgdh.io/paulina1-theta.vercel.app"

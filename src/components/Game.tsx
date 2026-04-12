@@ -143,31 +143,31 @@ export default function Game({ onGameOver }: GameProps) {
   return (
     <div className="min-h-screen pt-24 px-6 pb-12 flex flex-col items-center">
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/10">
-          <Activity className="text-cyber-purple/80 w-6 h-6" />
+        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/20">
+          <Activity className="text-cyber-purple w-6 h-6" />
           <div>
-            <p className="text-xs text-cyber-purple/40 uppercase">System Level</p>
-            <p className="text-xl font-bold font-mono">{gameState.level}: {currentLevelConfig.name}</p>
+            <p className="text-xs text-cyber-white/40 uppercase">System Level</p>
+            <p className="text-xl font-bold font-mono text-cyber-white">{gameState.level}: {currentLevelConfig.name}</p>
           </div>
         </div>
-        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/10">
-          <Zap className="text-cyber-purple/80 w-6 h-6" />
+        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/20">
+          <Zap className="text-cyber-purple w-6 h-6" />
           <div>
-            <p className="text-xs text-cyber-purple/40 uppercase">Current Score</p>
-            <p className="text-xl font-bold font-mono">{gameState.score}</p>
+            <p className="text-xs text-cyber-white/40 uppercase">Current Score</p>
+            <p className="text-xl font-bold font-mono text-cyber-white">{gameState.score}</p>
           </div>
         </div>
-        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/10">
-          <Timer className={`${gameState.timeLeft < 5 ? 'text-red-500 animate-pulse' : 'text-cyber-purple/80'} w-6 h-6`} />
+        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/20">
+          <Timer className={`${gameState.timeLeft < 5 ? 'text-red-500 animate-pulse' : 'text-cyber-purple'} w-6 h-6`} />
           <div>
-            <p className="text-xs text-cyber-purple/40 uppercase">Time Remaining</p>
-            <p className="text-xl font-bold font-mono">{gameState.timeLeft}s</p>
+            <p className="text-xs text-cyber-white/40 uppercase">Time Remaining</p>
+            <p className="text-xl font-bold font-mono text-cyber-white">{gameState.timeLeft}s</p>
           </div>
         </div>
       </div>
 
       <div className="w-full max-w-4xl mb-8">
-        <div className="flex justify-between text-xs text-cyber-purple/40 mb-2 uppercase tracking-widest">
+        <div className="flex justify-between text-xs text-cyber-white/40 mb-2 uppercase tracking-widest">
           <span>Hack Progress</span>
           <span>{Math.round(gameState.progress)}%</span>
         </div>
@@ -175,7 +175,7 @@ export default function Game({ onGameOver }: GameProps) {
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${gameState.progress}%` }}
-            className="h-full bg-gradient-to-r from-cyber-purple/60 to-white/40 shadow-[0_0_4px_rgba(214,0,255,0.2)]"
+            className="h-full bg-gradient-to-r from-cyber-purple to-cyber-white shadow-[0_0_8px_rgba(214,0,255,0.3)]"
           />
         </div>
       </div>
@@ -187,16 +187,16 @@ export default function Game({ onGameOver }: GameProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="w-full max-w-2xl glass-panel p-8 md:p-12 border-cyber-purple/10 bg-cyber-purple/[0.02] relative overflow-hidden"
+            className="w-full max-w-2xl glass-panel p-8 md:p-12 border-cyber-purple/20 bg-cyber-purple/[0.03] relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-full h-1 bg-cyber-purple/10" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-cyber-purple/20" />
             
-            <div className="flex items-center gap-2 mb-8 text-cyber-purple/80">
+            <div className="flex items-center gap-2 mb-8 text-cyber-purple">
               <Shield className="w-5 h-5" />
               <span className="text-xs uppercase tracking-widest font-bold">Security Layer {gameState.currentPuzzleIndex + 1}</span>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-medium mb-8 font-mono leading-relaxed opacity-90">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 font-mono leading-relaxed text-cyber-white">
               {currentPuzzle.question}
             </h2>
 

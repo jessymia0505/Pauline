@@ -135,31 +135,31 @@ export default function GridHack({ onGameOver }: GridHackProps) {
   return (
     <div className="min-h-screen pt-24 px-6 pb-12 flex flex-col items-center">
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/10">
-          <Activity className="text-cyber-purple/80 w-6 h-6" />
+        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/20">
+          <Activity className="text-cyber-purple w-6 h-6" />
           <div>
-            <p className="text-xs text-cyber-purple/40 uppercase">Encryption Level</p>
-            <p className="text-xl font-bold font-mono">{level}: {LEVELS_CONFIG[level].name}</p>
+            <p className="text-xs text-cyber-white/40 uppercase">Encryption Level</p>
+            <p className="text-xl font-bold font-mono text-cyber-white">{level}: {LEVELS_CONFIG[level].name}</p>
           </div>
         </div>
-        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/10">
-          <Zap className="text-cyber-purple/80 w-6 h-6" />
+        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/20">
+          <Zap className="text-cyber-purple w-6 h-6" />
           <div>
-            <p className="text-xs text-cyber-purple/40 uppercase">Data Extracted</p>
-            <p className="text-xl font-bold font-mono">{score}</p>
+            <p className="text-xs text-cyber-white/40 uppercase">Data Extracted</p>
+            <p className="text-xl font-bold font-mono text-cyber-white">{score}</p>
           </div>
         </div>
-        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/10">
-          <Timer className={`${timeLeft < 5 ? 'text-red-500 animate-pulse' : 'text-cyber-purple/80'} w-6 h-6`} />
+        <div className="glass-panel p-4 flex items-center gap-4 border-cyber-purple/20">
+          <Timer className={`${timeLeft < 5 ? 'text-red-500 animate-pulse' : 'text-cyber-purple'} w-6 h-6`} />
           <div>
-            <p className="text-xs text-cyber-purple/40 uppercase">Buffer Time</p>
-            <p className="text-xl font-bold font-mono">{timeLeft}s</p>
+            <p className="text-xs text-cyber-white/40 uppercase">Buffer Time</p>
+            <p className="text-xl font-bold font-mono text-cyber-white">{timeLeft}s</p>
           </div>
         </div>
       </div>
 
-      <div className="w-full max-w-2xl mb-8 glass-panel p-6 border-cyber-purple/10 bg-cyber-purple/[0.01]">
-        <div className="flex items-center gap-2 mb-4 text-cyber-purple/60">
+      <div className="w-full max-w-2xl mb-8 glass-panel p-6 border-cyber-purple/20 bg-cyber-purple/[0.03]">
+        <div className="flex items-center gap-2 mb-4 text-cyber-purple">
           <Target className="w-4 h-4" />
           <span className="text-xs uppercase tracking-widest font-bold">Target Hash Sequence</span>
         </div>

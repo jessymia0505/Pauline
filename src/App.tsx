@@ -179,24 +179,24 @@ export default function App() {
       </main>
 
       {/* Footer-like status bar */}
-      <footer className="fixed bottom-0 left-0 w-full p-4 flex flex-col md:flex-row justify-between items-center text-[10px] font-mono text-cyber-purple/60 tracking-widest z-50 bg-black/20 backdrop-blur-sm">
+      <footer className="fixed bottom-0 left-0 w-full p-4 flex flex-col md:flex-row justify-between items-center text-[10px] font-mono text-cyber-white/60 tracking-widest z-50 bg-black/20 backdrop-blur-sm">
         <div className="flex gap-6 mb-2 md:mb-0">
           <button 
             onClick={() => handleNavigate("how-to-play")}
             onMouseEnter={() => sounds.playClick()}
-            className="hover:text-cyber-purple transition-colors cursor-pointer uppercase font-bold border-b border-transparent hover:border-cyber-purple"
+            className="hover:text-cyber-white transition-colors cursor-pointer uppercase font-bold border-b border-transparent hover:border-cyber-white"
           >
             How to Play
           </button>
           <button 
             onClick={() => handleNavigate("contact")}
             onMouseEnter={() => sounds.playClick()}
-            className="hover:text-cyber-purple transition-colors cursor-pointer uppercase font-bold border-b border-transparent hover:border-cyber-purple"
+            className="hover:text-cyber-white transition-colors cursor-pointer uppercase font-bold border-b border-transparent hover:border-cyber-white"
           >
             Contact Us
           </button>
         </div>
-        <div className="uppercase font-bold text-cyber-purple/40">
+        <div className="uppercase font-bold text-cyber-white/40">
           Built by Paulina509
         </div>
       </footer>

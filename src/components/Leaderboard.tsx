@@ -45,15 +45,15 @@ export default function Leaderboard({ lastResult, onRestart }: LeaderboardProps)
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
-                <p className="text-[10px] text-cyber-purple/40 uppercase mb-1">Status</p>
+                <p className="text-[10px] text-cyber-white/40 uppercase mb-1">Status</p>
                 <p className="text-xl font-bold font-mono text-red-500/80">TERMINATED</p>
               </div>
               <div>
-                <p className="text-[10px] text-cyber-purple/40 uppercase mb-1">Final Score</p>
+                <p className="text-[10px] text-cyber-white/40 uppercase mb-1">Final Score</p>
                 <p className="text-xl font-bold font-mono text-white">{lastResult.score.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-[10px] text-cyber-purple/40 uppercase mb-1">Security Level</p>
+                <p className="text-[10px] text-cyber-white/40 uppercase mb-1">Security Level</p>
                 <p className="text-xl font-bold font-mono text-white">LVL {lastResult.level}</p>
               </div>
               <div className="flex items-end">
@@ -69,7 +69,7 @@ export default function Leaderboard({ lastResult, onRestart }: LeaderboardProps)
         )}
 
         <div className="glass-panel overflow-hidden border-cyber-purple/10">
-          <div className="grid grid-cols-4 p-6 border-b border-white/10 bg-white/5 text-xs font-bold text-cyber-purple/60 uppercase tracking-widest">
+          <div className="grid grid-cols-4 p-6 border-b border-white/10 bg-white/5 text-xs font-bold text-cyber-white/60 uppercase tracking-widest">
             <div className="flex items-center gap-2"><Hash className="w-4 h-4" /> Rank</div>
             <div className="flex items-center gap-2"><User className="w-4 h-4" /> Username</div>
             <div className="flex items-center gap-2"><Star className="w-4 h-4" /> Level</div>
@@ -97,12 +97,12 @@ export default function Leaderboard({ lastResult, onRestart }: LeaderboardProps)
                     {player.username}
                     {lastResult?.entryId === player.id && <UserCheck className="w-3 h-3 text-cyber-purple/80" />}
                   </div>
-                  <div className="text-cyber-purple/60">LVL {player.level}</div>
+                  <div className="text-cyber-white/60">LVL {player.level}</div>
                   <div className="text-cyber-purple/80 font-bold neon-text">{player.score.toLocaleString()}</div>
                 </motion.div>
               ))
             ) : (
-              <div className="p-12 text-center text-cyber-purple/20 font-mono italic">
+              <div className="p-12 text-center text-cyber-white/20 font-mono italic">
                 NO DATA PACKETS RETRIEVED YET...
               </div>
             )}
@@ -110,7 +110,7 @@ export default function Leaderboard({ lastResult, onRestart }: LeaderboardProps)
         </div>
 
         <div className="mt-12 p-8 glass-panel border-cyber-purple/10 text-center">
-          <p className="text-cyber-purple/40 font-mono text-sm mb-4">WANT TO SEE YOUR NAME HERE?</p>
+          <p className="text-cyber-white/40 font-mono text-sm mb-4">WANT TO SEE YOUR NAME HERE?</p>
           <button 
             onClick={onRestart || (() => sounds.playClick())}
             onMouseEnter={() => sounds.playClick()}

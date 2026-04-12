@@ -35,9 +35,9 @@ export default function Sidebar({ isOpen, onClose, onNavigate }: SidebarProps) {
             className="fixed top-0 left-0 h-full w-72 bg-cyber-dark border-r border-cyber-purple/30 z-[70] p-6"
           >
             <div className="flex justify-between items-center mb-12">
-              <span className="text-xl font-medium text-cyber-purple/60">MENU</span>
+              <span className="text-xl font-black tracking-widest text-cyber-white">MENU</span>
               <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg">
-                <X className="w-6 h-6 text-cyber-purple/40" />
+                <X className="w-6 h-6 text-cyber-purple" />
               </button>
             </div>
 
@@ -49,17 +49,17 @@ export default function Sidebar({ isOpen, onClose, onNavigate }: SidebarProps) {
                     onNavigate(item.id);
                     onClose();
                   }}
-                  className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-cyber-purple/10 transition-all border border-transparent hover:border-cyber-purple/30 group"
+                  className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-cyber-purple/10 transition-all border border-transparent hover:border-cyber-purple/30 group text-cyber-white"
                 >
                   <item.icon className="w-5 h-5 text-cyber-purple group-hover:scale-110 transition-transform" />
-                  <span className="text-lg font-medium group-hover:text-cyber-purple transition-colors">
+                  <span className="text-lg font-bold group-hover:text-cyber-purple transition-colors">
                     {item.label}
                   </span>
                 </button>
               ))}
             </nav>
 
-            <div className="absolute bottom-8 left-6 right-6 p-4 glass-panel text-xs text-cyber-purple/60 text-center">
+            <div className="absolute bottom-8 left-6 right-6 p-4 glass-panel text-xs text-cyber-white/60 text-center">
               SYSTEM STATUS: ONLINE
               <br />
               ENCRYPTION: ACTIVE

@@ -61,7 +61,7 @@ export default function HowToPlay() {
           <div>
             <div className="flex items-center gap-3 mb-6 border-b border-cyber-purple/20 pb-2">
               <Brain className="w-6 h-6 text-cyber-purple" />
-              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic">01. MIND HEIST <span className="text-xs font-mono text-cyber-purple/60 ml-2 italic">KNOWLEDGE QUIZ</span></h3>
+              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic">01. MIND HEIST <span className="text-xs font-mono text-cyber-white/60 ml-2 italic">KNOWLEDGE QUIZ</span></h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {mindHeistSteps.map((step, index) => (
@@ -72,11 +72,11 @@ export default function HowToPlay() {
                   transition={{ delay: index * 0.1 }}
                   className="glass-panel p-6 border-cyber-purple/10 hover:border-cyber-purple/30 transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-cyber-purple/5 flex items-center justify-center text-cyber-purple/60 mb-4 group-hover:bg-cyber-purple/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-cyber-purple/5 flex items-center justify-center text-cyber-white/60 mb-4 group-hover:bg-cyber-purple/10 transition-colors">
                     {step.icon}
                   </div>
                   <h4 className="text-lg font-bold mb-2 font-mono text-white tracking-wider">{step.title}</h4>
-                  <p className="text-cyber-purple/50 font-mono text-xs leading-relaxed">
+                  <p className="text-cyber-white/50 font-mono text-xs leading-relaxed">
                     {step.description}
                   </p>
                 </motion.div>
@@ -88,7 +88,7 @@ export default function HowToPlay() {
           <div>
             <div className="flex items-center gap-3 mb-6 border-b border-cyber-purple/20 pb-2">
               <Grid3X3 className="w-6 h-6 text-cyber-purple" />
-              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic">02. GRID HACK <span className="text-xs font-mono text-cyber-purple/60 ml-2 italic">PATTERN MATCH</span></h3>
+              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic">02. GRID HACK <span className="text-xs font-mono text-cyber-white/60 ml-2 italic">PATTERN MATCH</span></h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {gridHackSteps.map((step, index) => (
@@ -99,11 +99,11 @@ export default function HowToPlay() {
                   transition={{ delay: index * 0.1 }}
                   className="glass-panel p-6 border-cyber-purple/10 hover:border-cyber-purple/30 transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-cyber-purple/5 flex items-center justify-center text-cyber-purple/60 mb-4 group-hover:bg-cyber-purple/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-cyber-purple/5 flex items-center justify-center text-cyber-white/60 mb-4 group-hover:bg-cyber-purple/10 transition-colors">
                     {step.icon}
                   </div>
                   <h4 className="text-lg font-bold mb-2 font-mono text-white tracking-wider">{step.title}</h4>
-                  <p className="text-cyber-purple/50 font-mono text-xs leading-relaxed">
+                  <p className="text-cyber-white/50 font-mono text-xs leading-relaxed">
                     {step.description}
                   </p>
                 </motion.div>
@@ -115,7 +115,7 @@ export default function HowToPlay() {
           <div>
             <div className="flex items-center gap-3 mb-6 border-b border-cyber-purple/20 pb-2">
               <Zap className="w-6 h-6 text-cyber-purple" />
-              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic">SYSTEM RULES <span className="text-xs font-mono text-cyber-purple/60 ml-2 italic">CORE PROTOCOLS</span></h3>
+              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic">SYSTEM RULES <span className="text-xs font-mono text-cyber-white/60 ml-2 italic">CORE PROTOCOLS</span></h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {generalRules.map((step, index) => (
@@ -126,11 +126,11 @@ export default function HowToPlay() {
                   transition={{ delay: index * 0.1 }}
                   className="glass-panel p-6 border-cyber-purple/10 hover:border-cyber-purple/30 transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-cyber-purple/5 flex items-center justify-center text-cyber-purple/60 mb-4 group-hover:bg-cyber-purple/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-cyber-purple/5 flex items-center justify-center text-cyber-white/60 mb-4 group-hover:bg-cyber-purple/10 transition-colors">
                     {step.icon}
                   </div>
                   <h4 className="text-lg font-bold mb-2 font-mono text-white tracking-wider">{step.title}</h4>
-                  <p className="text-cyber-purple/50 font-mono text-xs leading-relaxed">
+                  <p className="text-cyber-white/50 font-mono text-xs leading-relaxed">
                     {step.description}
                   </p>
                 </motion.div>
@@ -140,7 +140,7 @@ export default function HowToPlay() {
         </div>
 
         <div className="mt-16 p-8 glass-panel border-cyber-purple/10 text-center">
-          <p className="text-cyber-purple/40 font-mono text-sm mb-6 uppercase tracking-widest">READY TO BEGIN THE HEIST?</p>
+          <p className="text-cyber-white/40 font-mono text-sm mb-6 uppercase tracking-widest">READY TO BEGIN THE HEIST?</p>
           <button 
             onClick={() => sounds.playStart()}
             onMouseEnter={() => sounds.playClick()}
